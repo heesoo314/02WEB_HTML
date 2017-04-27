@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>성년체크 예제</title>
+
+<style type="text/css">
+div#box {
+	width: 300px;
+	height: 100px;
+	margin-top: 20px;
+	border: 1px solid #efefef;
+	background-color: #aaf;
+	text-align: center;
+	line-height: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	border: 1px solid #efefef;
+}
+</style>
+
+<script type="text/javascript">
+
+
+	//숫자인지 아닌지 판별
+	function checkNumber(val){
+		
+		// 함수를 정의할 때 리턴타입을 설정할 수는 없고, 그냥 반환하면 된다.
+		var isNum = true;
+		
+		// 받은 인자값에서 한문자씩 받아솨 숫자인지 아닌지 판단하는 반복문
+		for(var i=0; i<val.length; i++){
+					
+			// val 문자열의 i번째 문자에 해당하는 '아스키코드'
+			// 숫자 0의 코드값 : 48, 숫자 9의 코드값 : 57
+			var code = val.charCodeAt(i); 
+				
+				if( code-48 < 0 || code-48 >= 10 ){
+					isNum = false;
+					break;
+				}
+			}
+		
+		
+		return isNum; // true/false 반환
+		
+	}
+
+
+
+	//성년체크
+	function test(f) {
+		
+		var year = f.yy.value;
+		
+		if(year.length == 4){
+			
+			// year가 숫자인 경우 수행
+			if(checkNumber(year)){
+				
+				// 현재 날짜
+				var now = new Date();
+				
+				// 현재 날짜에서 현재 연도만 추출
+				var cur_y = now.getFullYear();
+				
+				// 만 나이구하기
+				var age = cur_y - year;
+		
+				var msg = "";
+				if( age >= 19 ){
+					msg = age + "세는 성년입니다.";
+				} else {
+					msg = age + "세는 미성년입니다.";
+				}
+				
+				document.getElementById("box").innerHTML = msg;
+				
+			} else {
+				alert("문자나 공백이 포함되어서는 안됩니다.\r\n다시 입력해주세요.");
+				
+			}
+			
+		} else {
+			alert("연도 4자리를 제대로 입력해주세요.");
+		}
+		
+	}
+	
+	
+	
+	
+</script>
+
+</head>
+
+
+<body>
+
+	<form>
+		<fieldset>
+			<legend>성년체크</legend>
+			<label for="b_year">태어난 연도</label> <input type="text" id="b_year"
+				name="yy" /> <input type="button" value="확인"
+				onclick="test(this.form)" />
+			<!-- this.form : form 객체가 그냥 전달 
+				-> test()에서 form에 정의된 name.value로 값을 받을 수 있음 -->
+		</fieldset>
+	</form>
+
+	<div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 예제02</title>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+		crossorigin="anonymous"></script>
+	
+<script type="text/javascript">
+	
+	function test(){
+		
+		var txt = document.getElementById("txt1").value;	// Javascript 방식
+		var txt2 = $("#txt1").val();						// JQuery 방식 : css처럼 #id 접근!
+		
+		// 주의! javascript문법과 jQuery문법을 함께 사용할 수 없다.
+		// 예) $("#txt1").value;	(x)
+		//	   ---jQuery| ---JS|	혼용할 수 없음
+		
+		alert(txt + " = " + txt2);
+		
+	}
+
+</script>
+
+
+</head>
+
+<body>
+
+
+	<form>
+		<fieldset>
+			<legend>값 입력</legend>
+			<label for="txt1">값1</label><input type="text" id="txt1" name="v1" />
+			<input type="button" value="보내기" onclick="test()" />
+		</fieldset>
+	</form>
+
+</body>
+</html>

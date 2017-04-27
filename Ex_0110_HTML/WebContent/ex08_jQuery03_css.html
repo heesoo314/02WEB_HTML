@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 예제03</title>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+		crossorigin="anonymous"></script>
+		
+<script>
+
+	// jQuery양식 : $( ); -> 현재문서의 내용이 모두 인식되고 난 후 수행
+	// 그때, 나는 익명 함수를 만들어서 실행하겠다!
+	$(function(){
+		
+		$("h1").css("color", "#f00");	//css(속성, 값)
+		$("h2").css("border", "1px solid blue");
+		
+	});
+
+
+</script>
+</head>
+<body>
+
+	<h1>H1 요소 첫번째</h1>
+	<h1>H1 요소 두번째</h1>
+	<h2>H2 요소 첫번째</h2>
+	<h1>H1 요소 세번째</h1>
+	
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 예제</title>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+		crossorigin="anonymous"></script>
+	
+<script type="text/javascript">
+<!-- https://code.jquery.com///-->
+
+
+/* // 방법1)
+	window.onload = init();
+	
+	function init(){
+		// 현재 페이지가 로드됐을 때 수행하는 이벤트 - Javascript기법
+		alert("^^");
+	}
+	 */
+	
+	 
+	 
+/* 	// 방법2) 익명 함수
+	window.onload = function(){
+		 alert("^^");
+	 };
+	  */
+	 
+	  
+	  
+	// 방법3) jQuery
+	$(function(){
+		alert("^^");
+	});
+
+
+
+</script>
+
+</head>
+<body>
+<!-- <body onload="init()"> : body 태그 안 내용이 다 수행되고 닫힐 때 init 호출 -->
+</body>
+</html>

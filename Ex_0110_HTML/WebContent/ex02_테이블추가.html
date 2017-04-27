@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Table 01 - 테이블추가 예제</title>
+
+<style type="text/css">
+
+table#myTable {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width:300px;
+}
+
+tr, th, td {
+	border-bottom:1px solid #888;
+	padding:5px 0;
+}
+
+thead>tr>td {
+	text-align:right;
+}
+
+thead th {
+	background-color:#bcf;
+}
+
+tbody tr {
+	text-align:center;
+}
+</style>
+
+
+<script type="text/javascript">
+
+	var idx = 1;
+
+	function addRow(){
+		
+	
+		// 현재 문서에서 td태그를 만들어 td1 객체에 넣는다
+		var td1 = document.createElement("td"); 
+		var td2 = document.createElement("td");
+		var td3 = document.createElement("td");
+		
+		// td 태그 안에 '텍스트'를 넣기 ***
+		td1.innerHTML = idx++;
+		td2.innerHTML = "김아무개";
+		td3.innerHTML = "010-xxxx-xxxx";
+		
+		
+		// td를 담을 tr태그 객체 생성
+		var tr = document.createElement("tr");
+		
+		// tr 태그 안에 td '객체' 넣기 ***
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		
+		
+		// id를 가지고 table 검색
+		var table = document.getElementById("myTable");
+		
+		
+		// 검색된 테이블이 가지는 tbody를 가져온다.
+		// table - thead, tfoot, tbody -> 자식들을 배열 형태로 가지고 있다.
+		// tbody는 2번째 자식이므로 인덱스 '1'
+		var tbody = table.children[1];
+		
+		tbody.appendChild(tr);
+		
+		
+	}
+
+
+</script>
+</head>
+
+<body>
+
+	<table id="myTable">
+
+		<thead><!-- myTable children[0] -->
+			<tr>
+				<td colspan="3"><input type="button" value="행추가" onclick="addRow()"/></td>
+			</tr>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>연락처</th>
+			</tr>
+		</thead>
+		
+		<tbody><!-- myTable children[1] -->
+			<tr>
+				<td>0</td>
+				<td>김희수</td>
+				<td>010-5555-5555</td>
+			</tr>		
+		</tbody>
+		
+		
+	</table>
+
+</body>
+</html>

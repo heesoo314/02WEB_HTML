@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 예제05 - 배열</title>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+		crossorigin="anonymous"></script>
+
+<script>
+
+	$( function(){
+		
+		//아이디가 btn인 요소에 click 이벤트 적용
+		$("#btn").bind("click", function(){
+			
+			var pp = $("p");	// p요소가 여러개여서 자동으로 pp '배열'에 담겨짐
+			
+			for(var i=0; i<pp.length; i++){
+				
+				if((i+1)%2 == 0){
+					pp[i].style.color = "#f00";	// pp[i]가 javascript이기 때문에 .style로 적용
+				}
+				
+			}
+			
+		}); //클릭이벤트 익명함수
+		
+	} ); //익명 함수
+	
+</script>
+</head>
+
+<body>
+
+	<p>p요소1</p>
+	<p>p요소2</p>
+	<p>p요소3</p>
+	<p>p요소4</p>
+	<p>p요소5</p>
+	
+	<input type="button" value="CSS변경" id="btn" />
+
+</body>
+</html>

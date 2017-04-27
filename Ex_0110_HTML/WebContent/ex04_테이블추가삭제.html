@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Table 03 - 테이블추가삭제 예제</title>
+
+<style type="text/css">
+
+table#myTable {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 500px;
+	text-align: center;
+	
+}
+
+.tab01, .tab04 {
+	width:50px;
+}
+
+.fr {
+	text-align:right;
+}
+thead tr.tab, tbody tr {
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+	padding: 10px 0;
+}
+
+
+thead th {
+	background-color: #bcf;
+}
+
+</style>
+
+
+<script type="text/javascript">
+	var idx = 1;
+	var rowNo = -1;
+
+	function addRow() {
+
+		//----------------------------행 추가----------------------------
+
+		// 현재 문서에서 td태그를 만들어 td1 객체에 넣는다
+		var td1 = document.createElement("td");
+		var td2 = document.createElement("td");
+		var td3 = document.createElement("td");
+		var td4 = document.createElement("td");
+
+		
+		//input태그를 생성
+		var txt1 = document.createElement("input");
+		txt1.type = "text";  // <input type="text" name="lic"...
+		txt1.name = "lic";
+		
+		var txt2 = document.createElement("input");
+		txt2.type = "text";  
+		txt2.name = "pos";
+		
+		var btn = document.createElement("input");
+		btn.type = "button";  
+		btn.value = "삭제";
+		
+		// td 태그 안에 '텍스트'를 넣기 ***
+		td1.innerHTML = idx++;
+		td2.appendChild(txt1);
+		td3.appendChild(txt2);
+		td4.appendChild(btn);
+		
+
+		// td를 담을 tr태그 객체 생성
+		var tr = document.createElement("tr");
+
+		// tr 태그 안에 td '객체' 넣기 ***
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		tr.appendChild(td4);
+
+		// id를 가지고 table 검색
+		var table = document.getElementById("myTable");
+
+
+		var tbody = table.children[2];
+
+		tbody.appendChild(tr);
+
+
+		
+	//----------------------------행 삭제----------------------------
+		
+		// 행 위에 마우스를 올리면
+		tr.onmouseover = function(){ //익명함수
+			
+			// 현재 행번호를 table 객체에 저장
+			table.rowNo = this.rowIndex;
+			
+		};
+		
+		// 행을 클릭하면
+		btn.onclick = function(){
+			
+			//alert(table.rowNo);
+			table.deleteRow(table.rowNo);
+			
+		};
+		
+		
+	} //addRow()
+
+</script>
+
+</head>
+
+<body>
+
+	<form>
+
+		<table id="myTable">
+
+			<thead>
+				<!-- myTable children[0] -->
+				<tr class="fr">
+					<td colspan="4"><input type="button" value="추가" onclick="addRow()" /></td>
+				</tr>
+				<tr class="tab">
+					<th class="tab01" >번호</th>
+					<th class="tab02" >자격증</th>
+					<th class="tab03" >발행기관</th>
+					<th class="tab04" ></th>
+				</tr>
+			</thead>
+			
+			<tfoot><!-- myTable children[1] -->
+				<tr>
+					<td colspan="4">
+						<input type="button" value="확인" /> &nbsp;&nbsp;
+						<input type="button" value="취소" />
+					</td>
+				</tr>
+			</tfoot>
+
+			<tbody>
+				<!-- myTable children[2] -->
+				<tr>
+					<td>(예)</td>
+					<td>TOEIC 999</td>
+					<td>ETS</td>
+					<td><input type="button" value="삭제"/></td>
+				</tr>
+			</tbody>
+
+
+		</table>
+
+	</form>
+
+</body>
+</html>

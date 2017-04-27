@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Table 04 - 테이블추가삭제 예제v.2</title>
+
+<style type="text/css">
+
+form#f1, form#f2 {
+	width:600px;
+	margin-bottom:30px;
+	
+}
+
+table#myTable {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 550px;
+	text-align: center;
+}
+
+table, tr, th, td {
+	border:1px solid #888;
+	padding:5px;
+}
+
+.tab01, .tab04 {
+	width:50px;
+}
+
+.tab03 {
+	width:120px;
+}
+
+thead th {
+	background-color: #bcf;
+} 
+
+</style>
+
+
+<script type="text/javascript">
+
+	var idx = 1;
+	var rowNo = -1;
+
+	function add(ff) {
+		
+		//---------------------------- 추가 ----------------------------
+		
+		
+		// 입력한 회사이름과 근무기간 값을 받아온다.
+		var corp = ff.corp.value;
+		var time = ff.time.value;	
+		
+
+		// td태그 생성
+		var td1 = document.createElement("td");
+		var td2 = document.createElement("td");
+		var td3 = document.createElement("td");
+		var td4 = document.createElement("td");
+
+
+		// input태그 생성
+		var btn = document.createElement("input");
+		btn.type = "button";
+		btn.value = "삭제";
+
+		
+		// td 태그 안에 '텍스트'를 넣기 ***
+		td1.innerHTML = idx++;
+		td2.innerHTML = corp;
+		td3.innerHTML = time;
+		td4.appendChild(btn);
+
+		
+		// td를 담을 tr태그 객체 생성
+		var tr = document.createElement("tr");
+
+		
+		// tr 태그 안에 td '객체' 넣기 ***
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		tr.appendChild(td3);
+		tr.appendChild(td4);
+
+		
+		// id를 가지고 table, tbody검색
+		var table = document.getElementById("myTable");
+		var tbody = table.children[1];
+		tbody.appendChild(tr);
+
+		
+		//입력후 인풋텍스트 초기화
+		ff.corp.value = "";
+		ff.time.value = "";
+		
+		
+		//---------------------------- 삭제 ----------------------------
+
+		// 행 위에 마우스를 올리면
+		tr.onmouseover = function() { //익명함수
+
+			// 현재 행번호를 table 객체에 저장
+			table.rowNo = this.rowIndex;
+
+		};
+
+		// 행을 클릭하면
+		btn.onclick = function(){
+			
+			table.deleteRow(table.rowNo);
+			
+		};
+
+	} //add()
+	
+</script>
+
+</head>
+
+<body>
+
+	<form id="f1">
+		<fieldset>
+			<legend>추가입력</legend>
+			<label for="corp">회사이름 </label><input type="text" id="corp"	name="corp" />
+			<label for="time">근무기간 </label><input type="text" id="time" name="time" />
+		    <input type="button" value="추가" onclick="add(this.form)" />
+		</fieldset>
+	</form>
+
+
+
+	<form id="f2">
+		<fieldset>
+			<legend>경력사항</legend>
+
+			<table id="myTable">
+
+				<thead>
+					<!-- myTable children[0] -->
+					<tr>
+						<th class="tab01">번호</th>
+						<th class="tab02">회사이름</th>
+						<th class="tab03">근무기간</th>
+						<th class="tab04">삭제</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<!-- myTable children[1] -->
+					<tr>
+						<td>(예)</td>
+						<td>인크레파스</td>
+						<td>2017.01.01~2017.12.31</td>
+						<td><input type="button" value="삭제" /></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</fieldset>
+	</form>
+
+</body>
+</html>

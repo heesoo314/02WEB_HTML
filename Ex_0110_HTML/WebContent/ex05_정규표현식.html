@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>정규표현식 예제</title>
+
+<script type="text/javascript">
+
+	function test(ff){
+		
+		var v1 = ff.v1.value;
+		// 	   = document.forms[0].v1.value	-> form객체가 여러개 있을 수도 있으니까 배열 인덱스로 접근
+		
+		var msg = m_trim(v1);
+		// alert(msg); 
+		
+		document.forms[0].v1.value = msg;
+		document.forms[0].v1.focus();
+		
+		// trim 처리된 값이 비어있다면
+		if(msg == ""){
+			alert("값을 입력하세요.");
+			return;
+		}
+		
+		// 서버로 자원전송
+		// document.forms[0].submit();
+	}
+	
+	
+	function m_trim(vv){
+		// "": 화이트스페이스(공백)을 찾아서 ""로 만들어야 한다.
+		
+		var s = vv.replace(/^\s+|\s+$/g, "");
+		return s;
+		
+	/* 	
+		
+		/^ 	: 시작부분
+		\s	: 띄운 공백
+		+	: +기호 앞의 정규표현식과 일치한 경우가 1개 이상일 때
+		  --> "처음 시작 부분이 공백이냐?"
+				
+		|	: 또는(or)
+		
+		\s	: 띄운 공백
+		+
+		$/	: 끝부분
+		 --> "마지막 끝 부분이 공백이냐?"
+				  
+		g 	: 그놈을 찾아서
+		""	: replace 공백으로 바꿔라
+		
+	*/
+	
+	
+	}
+	
+</script>
+</head>
+<body>
+
+	<h2>정규표현식을 이용한 trim 기능</h2>
+
+	<form>
+		<fieldset>
+			<legend>값 입력</legend>
+			<label for="txt1">값1</label><input type="text" id="txt1" name="v1" />
+			<input type="button" value="보내기" onclick="test(this.form)" />
+		</fieldset>
+	</form>
+	
+	
+</body>
+</html>
